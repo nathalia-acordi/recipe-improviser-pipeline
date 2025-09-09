@@ -88,10 +88,6 @@ Rotas sugeridas:
 
 ---
 
-
----
-
-
 ## 🔄 Fluxo Resumido
 
 ```mermaid
@@ -135,7 +131,15 @@ flowchart TD
 ---
 
 <div align="center">
-   <h2>🤝 Contribua e faça parte!</h2>
-   <p>Gostou do projeto? Sinta-se à vontade para abrir issues, enviar PRs ou sugerir melhorias.<br>
-   Se este repositório te ajudou, <b>deixe uma estrela ⭐ e compartilhe!</b></p>
+   <h3>💬 Ficou com dúvidas, quer trocar ideias ou colaborar?</h3>
+   <b>Entre em contato comigo!</b><br><br>
+   <a href="mailto:nathaliaccord@gmail.com" target="_blank">
+      <img src="https://img.shields.io/badge/E--mail-nathaliaccord@gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="E-mail Badge"/>
+   </a>
+   <a href="https://www.linkedin.com/in/nath%C3%A1lia-acordi-0a564b223/" target="_blank">
+      <img src="https://img.shields.io/badge/LinkedIn-Nathália%20Acordi-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn Badge"/>
+   </a>
+   <br><br>
+   Se curtiu o projeto, dê uma estrela! ⭐
 </div>
+
