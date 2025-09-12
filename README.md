@@ -92,12 +92,26 @@ Rotas sugeridas:
 
 ```mermaid
 flowchart TD
-   A(Usuário: POST /recipe) -->|Cria job| B(Producer Lambda)
-   B -->|Publica| C(SNS)
-   C -->|Entrega| D(SQS)
-   D -->|Aciona| E(Worker Lambda)
-   E -->|Processa e salva| F(MongoDB Atlas)
-   G(Usuário: GET resultado) -->|Consulta| F
+    A(Usuário: POST /recipe):::user -->|Cria job| B(Producer Lambda):::lambda
+    B -->|Publica| C(SNS):::sns
+    C -->|Entrega| D(SQS):::sqs
+    D -->|Aciona| E(Worker Lambda):::lambda2
+    E -->|Processa e salva| F(MongoDB Atlas):::mongo
+    G(Usuário: GET resultado):::user -->|Consulta| F
+
+    classDef user fill:#e3fcec,stroke:#2ecc40,stroke-width:2px,color:#222;
+    classDef lambda fill:#fff3cd,stroke:#f1c40f,stroke-width:2px,color:#222;
+    classDef lambda2 fill:#f9e79f,stroke:#f39c12,stroke-width:2px,color:#222;
+    classDef sns fill:#eaf6ff,stroke:#3498db,stroke-width:2px,color:#222;
+    classDef sqs fill:#fce4ec,stroke:#e84393,stroke-width:2px,color:#222;
+    classDef mongo fill:#e8f5e9,stroke:#27ae60,stroke-width:2px,color:#222;
+
+    class A,G user;
+    class B lambda;
+    class E lambda2;
+    class C sns;
+    class D sqs;
+    class F mongo;
 ```
 
 
@@ -142,4 +156,5 @@ flowchart TD
    <br><br>
    Se curtiu o projeto, dê uma estrela! ⭐
 </div>
+
 
