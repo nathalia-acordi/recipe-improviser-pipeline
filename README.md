@@ -49,30 +49,52 @@ flowchart TD
 ---
 
 ## Comparativo de Performance e Custos
+### 📌 Cenário
 
-### ⏱️ Tabela de memória, latência e custo
+Este cenário simula o uso de uma função AWS Lambda por 300 usuários, cada um fazendo 50 requisições por dia durante 30 dias.
 
-| Cenário                | Memória | Latência/job | Custo mensal (USD) |
-|------------------------|---------|--------------|--------------------|
-| Antes (antigo)         | 128 MB  | 12 s         | $3,78              |
-| Depois (256 MB, otimizado)  | 256 MB  | 4,8 s        | $2,78              |
+**Total de execuções no mês:**  
+`300 usuários × 50 req/dia × 30 dias = 450.000 execuções/mês`
 
 
-### 💸 Comparativo de custos considerando o free tier
+### 📊 Tabela Comparativa
 
-**Cenário:** 300 usuários × 50 requisições/dia × 30 dias = **450.000 execuções/mês**
+| **Cenário**            | **Memória** | **Duração/job** | **Execuções/mês** | **GB-s/mês** | **GB-s pagos** | **Custo (USD)** |
+|------------------------|-------------|------------------|-------------------|--------------|----------------|-----------------|
+| Antes (128 MB)         | 128 MB      | 12 s             | 450.000           | 675.000      | 275.000        | **$4.58**       |
+| Depois (256 MB)        | 256 MB      | 4.8 s            | 450.000           | 540.000      | 140.000        | **$2.33**       |
 
-O free tier da AWS Lambda cobre até **1 milhão de execuções** e **400.000 GB-segundos** por mês. Só o que exceder esses limites é cobrado.
 
-| Cenário                 | Memória | Duração média | Execuções/mês | GB-s/mês | Execuções pagas | GB-s pagos | Custo mensal (USD) |
-|-------------------------|---------|--------------|--------------:|---------:|----------------:|-----------:|-------------------:|
-| Antes (antigo)          | 128 MB  | 12 s         |      450.000  | 675.000  |               0 |    275.000 |           $4,58    |
-| Depois (256 MB, atual)  | 256 MB  | 4,8 s        |      450.000  | 540.000  |               0 |    140.000 |           $2,33    |
+### 🧮 Cálculos Detalhados
 
-**Detalhes do cálculo:**
-- 128 MB, 12s: 0,125 GB × 12 s × 450.000 = 675.000 GB-s (400.000 grátis, 275.000 pagos) × $0.00001667 = $4,58
-- 256 MB, 4,8s: 0,25 GB × 4,8 s × 450.000 = 540.000 GB-s (400.000 grátis, 140.000 pagos) × $0.00001667 = $2,33
-- Execuções: 450.000 < 1.000.000 → grátis
+#### **Antes (128 MB × 12 segundos)**
+
+- **Memória em GB:** `128 MB = 0,125 GB`
+- **Tempo por execução:** `12 s`
+- **Cálculo por execução:** `0,125 GB × 12 s = 1,5 GB-s`
+- **Total no mês:** `1,5 GB-s × 450.000 execuções = 675.000 GB-s`
+- **Grátis (free tier):** `400.000 GB-s`
+- **Excedente:** `675.000 - 400.000 = 275.000 GB-s`
+- **Custo:** `275.000 × $0.00001667 = $4.58`
+
+#### **Depois (256 MB × 4.8 segundos)**
+
+- **Memória em GB:** `256 MB = 0,25 GB`
+- **Tempo por execução:** `4.8 s`
+- **Cálculo por execução:** `0,25 GB × 4.8 s = 1,2 GB-s`
+- **Total no mês:** `1,2 GB-s × 450.000 execuções = 540.000 GB-s`
+- **Grátis (free tier):** `400.000 GB-s`
+- **Excedente:** `540.000 - 400.000 = 140.000 GB-s`
+- **Custo:** `140.000 × $0.00001667 = $2.33`
+
+
+### ℹ️ Observações
+
+- **Execuções**: As 450.000 execuções estão **dentro do limite gratuito (1 milhão)** → custo zero nesse ponto.
+- **Cobrança apenas pelo excedente em GB-s**.
+- **Preço oficial do AWS Lambda (em us-east-1):**  
+  `$0.00001667 por GB-s excedente`  
+  [Fonte oficial AWS](https://aws.amazon.com/lambda/pricing/)
 
 ---
 
@@ -178,4 +200,5 @@ Rotas sugeridas:
    <br><br>
    Se curtiu o projeto, dê uma estrela! ⭐
 </div>
+
 
