@@ -129,16 +129,20 @@ flowchart TD
 
 ---
 
+## ⚡ Resultado
 
-## ⚡ Por que essa arquitetura é otimizada?
+Durante a evolução do projeto, algumas soluções foram fundamentais para melhorar a performance e a robustez do pipeline:
 
-- **Funções pequenas e independentes:** Menor cold start, fácil manutenção e escalabilidade.
-- **Layer do MongoDB:** Reduz tamanho dos pacotes e acelera deploy.
-- **Processamento assíncrono (SNS/SQS):** Producer responde rápido, worker processa pesado.
-- **API Gateway desacoplado:** Funções leves, respostas rápidas.
-- **MongoDB Atlas gerenciado:** Baixa latência e alta escalabilidade.
-- **Escalabilidade automática:** Cada Lambda escala conforme a demanda.
+- **Sistema de mensageria (SNS/SQS):** Permite desacoplar o recebimento do pedido do processamento pesado, garantindo respostas rápidas ao usuário e maior resiliência.
+- **Prompts mais precisos e respostas curtas:** Ajustamos os prompts enviados à OpenAI para serem mais objetivos, limitando o tamanho e a complexidade das respostas. Isso reduziu o risco de respostas truncadas e acelerou o processamento.
+- **Aumento da memória do worker para 512 MB:** Com mais memória, a AWS Lambda também oferece mais CPU, reduzindo o tempo de execução da função.
 
+### ⏱️ Latência antes e depois das otimizações
+
+| Cenário                | Latência média por job |
+|------------------------|-----------------------|
+| Antes das otimizações  | ~10,6 segundos        |
+| Depois das otimizações | **~5,7 segundos**     |
 
 <p align="center"><b>Essas práticas garantem um sistema responsivo, resiliente e com baixo custo operacional, ideal para workloads serverless modernos.</b></p>
 
