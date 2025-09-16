@@ -15,17 +15,21 @@ function buildSystemPrompt({ style, diet }) {
     low_cost: "Ingredientes acessíveis e econômicos.",
   }[diet] || "Sem restrições específicas.";
 
-  return `Você é um assistente CULINÁRIO em PT-BR.
-- Estilo: ${styleDesc}
-- Dieta/Restrição: ${dietRules}
-- IMPORTANTE: responda ESTRITAMENTE em JSON, sem nenhum texto antes ou depois.
-- O JSON deve conter as chaves: title, servings, time_minutes, ingredients_used, steps, tips, warnings.`;
+  return `Você é um assistente culinário. Gere UMA receita em português, usando apenas os ingredientes listados. Responda ESTRITAMENTE em JSON, sem texto extra.
+
+Formato do JSON:
+{
+  "title": "string",
+  "servings": número,
+  "time_minutes": número,
+  "ingredients_used": [array de strings],
+  "steps": [máx. 4 strings curtas],
+  "tips": [máx. 2 strings curtas, opcional],
+  "warnings": [máx. 1 string curta, opcional]
 }
 
-function buildUserPrompt({ ingredients, servings }) {
-  return `Ingredientes disponíveis: ${ingredients.join(", ")}
-Porções: ${servings || 2}
-Gere UMA receita de 20-30 min com 4 a 8 passos.`;
+Estilo: ${styleDesc}
+Dieta: ${dietRules}`;
 }
 
 function safeParseJsonFromMarkdown(text) {
@@ -48,12 +52,14 @@ export async function callOpenAI({ style, diet, ingredients, servings }) {
   const controller = new AbortController();
   const t = setTimeout(() => controller.abort(), 15000); 
 
+  const _servings = servings;
+  const _ingredients = ingredients;
   try {
     const payload = {
       model: "gpt-4o-mini", 
       messages: [
         { role: "system", content: buildSystemPrompt({ style, diet }) },
-        { role: "user", content: buildUserPrompt({ ingredients, servings }) },
+        { role: "user", content: buildUserPrompt({ ingredients: _ingredients, servings: _servings }) },
       ],
       temperature:
         style === "funny" || style === "chaotic" ? 0.9 :
@@ -85,12 +91,11 @@ export async function callOpenAI({ style, diet, ingredients, servings }) {
 
   } catch (err) {
     console.error("❌ Erro ao fazer parse do JSON gerado:", err.message);
-
     return {
       title: "Erro ao interpretar receita",
       time_minutes: 0,
-      servings,
-      ingredients_used: ingredients,
+      servings: _servings,
+      ingredients_used: _ingredients,
       steps: [
         "Houve um erro ao gerar a receita.",
         "Verifique os ingredientes e tente novamente."
