@@ -196,20 +196,20 @@ Rotas sugeridas:
 
 ---
 
-## 💬 Contato
-
 <div align="center">
    <h3>💬 Ficou com dúvidas, quer trocar ideias ou colaborar?</h3>
    <b>Entre em contato comigo!</b><br><br>
-   <a href="mailto:nathaliaccord@gmail.com" target="_blank">
+   <a href="mailto:nathaliaccord@gmail.com" target="_blank" style="display:inline-block;margin-bottom:8px;">
       <img src="https://img.shields.io/badge/E--mail-nathaliaccord@gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="E-mail Badge"/>
-   </a>
-   <a href="https://www.linkedin.com/in/nath%C3%A1lia-acordi-0a564b223/" target="_blank">
+   </a><br>
+   <a href="https://www.linkedin.com/in/nath%C3%A1lia-acordi-0a564b223/" target="_blank" style="display:inline-block;margin-top:8px;">
       <img src="https://img.shields.io/badge/LinkedIn-Nathália%20Acordi-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn Badge"/>
    </a>
    <br><br>
    Se curtiu o projeto, dê uma estrela! ⭐
+
 </div>
+
 
 
 
