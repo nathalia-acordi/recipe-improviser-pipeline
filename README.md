@@ -1,7 +1,17 @@
 
 <div align="center">
    <h1>🍳 Recipe Improviser Pipeline</h1>
-   <p>Arquitetura serverless para geração e consulta de receitas culinárias usando <b>AWS Lambda</b>, <b>SNS</b>, <b>SQS</b>, <b>API Gateway</b> e <b>MongoDB Atlas</b>.</p>
+   <p>Arquitetura serverless assíncrona para geração e consulta de receitas culinárias.</p>
+
+   <p align="center">
+  <img src="https://img.shields.io/badge/Node.js-22.x-339933?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js Badge" height="22"/>
+  <img src="https://img.shields.io/badge/AWS%20Lambda-Serverless-FF9900?style=for-the-badge&logo=awslambda&logoColor=white" alt="AWS Lambda Badge" height="22"/>
+  <img src="https://img.shields.io/badge/AWS%20SNS-Pub%2FSub-FF9900?style=for-the-badge&logo=amazonsimpleemailservice&logoColor=white" alt="SNS Badge" height="22"/>
+  <img src="https://img.shields.io/badge/AWS%20SQS-Queue-FF4F8B?style=for-the-badge&logo=amazonsqs&logoColor=white" alt="SQS Badge" height="22"/>
+  <img src="https://img.shields.io/badge/AWS%20API%20Gateway-HTTP%20API-FF4F8B?style=for-the-badge&logo=amazonapigateway&logoColor=white" alt="API Gateway Badge" height="22"/>
+  <img src="https://img.shields.io/badge/MongoDB%20Atlas-Cluster-47A248?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB Atlas Badge" height="22"/>
+  <img src="https://img.shields.io/badge/Vitest-Testing-6E9F18?style=for-the-badge&logo=vitest&logoColor=white" alt="Vitest Badge" height="22"/>
+</p>
 </div>
 
 ---
@@ -200,5 +210,6 @@ Rotas sugeridas:
    <br><br>
    Se curtiu o projeto, dê uma estrela! ⭐
 </div>
+
 
 
